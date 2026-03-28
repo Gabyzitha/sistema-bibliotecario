@@ -7,9 +7,6 @@ import java.util.LinkedList;
 // GERENCIAR A LISTA DE LIVROS
 public class Biblioteca {
 
-    private String titulo;
-    private String autor;
-    private int ano;
 
     LinkedList<Livro> lista = new LinkedList<>(); // cria a linkedList
 
@@ -25,6 +22,22 @@ public class Biblioteca {
         lista.add(livro);
         System.out.println("Livro add com sucesso!");
         return true;
+    }
+
+    // método para listar livros
+    public void listarLivros(){
+        if (lista.isEmpty()) {
+            System.out.println("Nenhum livro cadastrado no momento!");
+            return;
+        }
+        System.out.println("\n★★★★★ [LISTAR LIVROS] ★★★★★\n");
+
+        for (Livro l : lista) {
+            System.out.println(l);
+        }
+
+
+
     }
 
     // Criar método para exibir a lista de livros (toString)

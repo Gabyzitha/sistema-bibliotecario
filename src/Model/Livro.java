@@ -46,15 +46,27 @@ public class Livro {
         this.ano = ano;
     }
 
-    //toString
 
+    // equals para não repetir o livro
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Livro livro = (Livro) o;
+
+        return getAno().equals(livro.getAno()) &&
+                getTitulo().equals(livro.getTitulo()) &&
+                getAutor().equals(livro.getAutor());
+    }
+
+    //toString
     @Override
     public String toString(){
         return "Título: " + titulo + "\nAutor: "
                 + autor + "\nAno: " + ano;
 
     }
-
 
 
 }

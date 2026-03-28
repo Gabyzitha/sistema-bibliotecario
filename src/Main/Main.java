@@ -13,10 +13,11 @@ import java.util.Scanner;
 public class Main {
 
 
-  public static void Menu (){
+
+
+  public static void Menu (Biblioteca biblioteca){
 
     Scanner sc = new Scanner(System.in); // cria o scanner
-    Biblioteca biblioteca = new Biblioteca(); //cria a biblioteca
 
 
 
@@ -60,14 +61,9 @@ public class Main {
         biblioteca.adicionarLivro(novoLivro);
 
 
-        System.out.println("Livro adicionado com sucesso!");
-
-
 
       } else if (opcao == 'b') {
-        System.out.println("\n★★★★★ [LISTAR LIVROS] ★★★★★\n");
-
-
+        biblioteca.listarLivros();
 
       } else if (opcao == 'c'){
         System.out.println("sair");
@@ -90,9 +86,10 @@ public class Main {
     System.out.println("        BEM VINDA(E/O) AO ACERVO LÉSBICO\n");
     System.out.println("==================================================\n");
 
-    Menu();
+    Biblioteca biblioteca = new Biblioteca(); //cria a biblioteca
 
 
+    Menu(biblioteca);
 
   }
 }
