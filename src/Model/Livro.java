@@ -8,14 +8,16 @@ public class Livro {
     private String titulo;
     private String autor;
     private Integer ano;
+    private Boolean disponivel;
 
 
     // construtor
 
-    public Livro(String titulo, String autor, Integer ano) {
+    public Livro(String titulo, String autor, Integer ano, Boolean disponivel) {
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
+        this.disponivel = disponivel;
     }
 
     // getters
@@ -32,6 +34,11 @@ public class Livro {
         return ano;
     }
 
+    public Boolean isDisponivel() {
+        return disponivel;
+    }
+
+
     // setters
 
     public void setTitulo(String titulo) {
@@ -46,6 +53,9 @@ public class Livro {
         this.ano = ano;
     }
 
+    public void setDisponivel(Boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 
     // equals para não repetir o livro
     @Override
@@ -67,6 +77,7 @@ public class Livro {
                 + autor + "\nAno: " + ano;
 
     }
+
 
 
 }
