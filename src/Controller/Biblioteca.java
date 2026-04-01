@@ -3,6 +3,7 @@ package Controller;
 import Model.Livro;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 // GERENCIAR A LISTA DE LIVROS
 public class Biblioteca {
@@ -10,6 +11,7 @@ public class Biblioteca {
 
     LinkedList<Livro> lista = new LinkedList<>(); // cria a linkedList
     private LinkedList<String> listaDeEspera =  new LinkedList<>();
+    private Stack<Livro> historico = new Stack<>();
 
 
     // método para add livro a biblioteca
@@ -58,8 +60,20 @@ public class Biblioteca {
         listaDeEspera.addLast(nomeUsuario);
         System.out.println("\n=========================================");
         System.out.println("Adicionado na lista de espera com sucesso! ");
-        System.out.println("===========================================\n");
-        System.out.println(listaDeEspera);
+        System.out.println("===========================================");
+
+        System.out.println("\n★★★★★ [LISTA DE ESPERA] ★★★★★\n");
+
+        int posicao = 1;
+
+        for(String nome : listaDeEspera){
+            System.out.println(posicao + "º- " + nome);
+            posicao++;
+        }
+        System.out.println("\n===========================================\n");
+
+
+
 
     }
 
@@ -77,8 +91,33 @@ public class Biblioteca {
 
     }
 
+    //método para add o livro pesquisado na pilha - historico (pilha)
+    public void adicionarAoHistorico(Livro livro){
+        historico.push(livro);
+    }
 
-    //método para registrar o historico (pilha)
+    // método para vizualizar o histórico
+    public void mostrarHistorico(){
+        if(historico.isEmpty()) { // se o historico estiver vazio
+            System.out.println("\n============================");
+            System.out.println("Eita, nenhum livro visto ainda! ");
+            System.out.println("===============================\n");
+            return;
+        }
+
+        System.out.println("\n★★★★★ [HISTÓRICO DE LIVROS PESQUISADOS] ★★★★★\n");
+
+        for (int i = historico.size() -1; i>=0; i--){
+            System.out.println("============================");
+            System.out.println(historico.get(i));
+            System.out.println("===============================\n");
+
+        }
+
+    }
+
+
+
 
 
 

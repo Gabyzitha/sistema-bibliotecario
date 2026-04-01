@@ -20,10 +20,10 @@ public class Main {
     do {
 
       // OPCÇÕES MENU
-      System.out.println("a-> Adicionar Livro ");
-      System.out.println("b-> Listar Livros ");
-      System.out.println("c-> Verificar a Disponibilidade de Livro");
-      System.out.println("d-> Chamar o Próximo da Fila");
+      System.out.println("a-> Adicionar livro ");
+      System.out.println("b-> Listar livros ");
+      System.out.println("c-> Verificar a disponibilidade de livro");
+      System.out.println("d-> Chamar o próximo da fila");
       System.out.println("e-> Histórico de navegação");
       System.out.println("f-> Sair \n");
 
@@ -104,6 +104,7 @@ public class Main {
           System.out.println("\n========================");
           System.out.println("LIVRO ENCONTRADO: \n");
           System.out.println(livro);
+          biblioteca.adicionarAoHistorico(livro);
           System.out.println("========================\n");
 
           System.out.print("Deseja verificar a disponibilidade do livro para alugar(s/n)? ");
@@ -123,7 +124,7 @@ public class Main {
               simOuNao = sc.nextLine();
 
               if (simOuNao.equals("s")) {
-                System.out.println("Digite o seu nome: ");
+                System.out.print("Digite o seu nome: ");
                 String nomeUsuario = sc.nextLine();
                 biblioteca.addAoFinalDaFila(nomeUsuario);
               }
@@ -136,14 +137,15 @@ public class Main {
 
         String proximo = biblioteca.chamarProximoDaFila();
 
-        System.out.println("\n===============================");
+        System.out.println("===============================");
         System.out.println("Agora é a vez de " + proximo);
         System.out.println("===============================\n");
 
         // OPÇÃO HISTORICO DE NAVEGAÇÃO
       } else if (opcao == 'e') {
+        biblioteca.mostrarHistorico();
 
-
+        // OPÇÃO DE SAIR
       } else if (opcao == 'f') {
         System.out.println("sair");
       }  else {
@@ -158,22 +160,18 @@ public class Main {
 
   }
 
-
   public static void main(String[] args){
 
     System.out.println("==================================================\n");
     System.out.println("        BEM VINDA(E/O) AO ACERVO LÉSBICO\n");
-    System.out.println("==================================================\n");
+    System.out.println("=================================================\n");
 
     Biblioteca biblioteca = new Biblioteca(); //cria a biblioteca
 
 
-    Menu(biblioteca);
+    Menu(biblioteca); // chama o menu
 
   }
 }
 
-// o que falta:
-// add o metodo de historico de navegação
-// estilizar a exibição de listar livros
-// estilizar a exibição da lista de espera
+
