@@ -70,6 +70,15 @@ public class Livro {
                 getAutor().equals(livro.getAutor());
     }
 
+    // hashcode para identificar livros iguais
+    @Override
+    public int hashCode(){
+        int resultado = titulo.hashCode();
+        resultado = 31 * resultado + autor.hashCode();
+        resultado = 31 * resultado + ano.hashCode();
+        return resultado;
+    }
+
     //toString
     @Override
     public String toString(){

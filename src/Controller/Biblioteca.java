@@ -2,16 +2,16 @@ package Controller;
 
 import Model.Livro;
 
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 // GERENCIAR A LISTA DE LIVROS
 public class Biblioteca {
 
 
     LinkedList<Livro> lista = new LinkedList<>(); // cria a linkedList
-    private LinkedList<String> listaDeEspera =  new LinkedList<>();
-    private Stack<Livro> historico = new Stack<>();
+    private LinkedList<String> listaDeEspera =  new LinkedList<>(); //cria a linked list de apoio para a fila
+    private Stack<Livro> historico = new Stack<>(); // cria a pilha
+    private HashMap<Livro, Set<Livro>> grafo = new HashMap<>(); // cria  o Hashmap (grafo)
 
 
     // método para add livro a biblioteca
@@ -44,7 +44,7 @@ public class Biblioteca {
         }
     }
 
-    // metodo para buscar o livro por titulo
+    // metodo para buscar o livro por titulo na lista
     public Livro buscarLivroPorTitulo (String tituloDigitado) {
 
         for(Livro l : lista){
@@ -91,6 +91,7 @@ public class Biblioteca {
 
     }
 
+
     //método para add o livro pesquisado na pilha - historico (pilha)
     public void adicionarAoHistorico(Livro livro){
         historico.push(livro);
@@ -115,6 +116,57 @@ public class Biblioteca {
         }
 
     }
+
+    //livro é a chave (nó)
+    //new HashSet<>() é o valor (lista de recomendações)
+
+    // método para add os livros no grafo (nós)
+    public void adicionarLivroNoGrafo (Livro livro){
+        grafo.putIfAbsent(livro, new HashSet<>()); // se o livro não exixstir, cria ele numa lista vazia de recomendações
+    }
+
+    // método para criar conexões
+    public void adicionarConexao (Livro l1, Livro l2){
+        grafo.get(l1).add(l2); // l1 recomenda l2
+        grafo.get(l2).add(l1);// l2 recomenda l1
+    }
+
+    // método para recomendar
+    public void recomendar(Livro livro){
+
+        // pega as recomendações do grafo
+        Set<Livro> recomendacoes = grafo.get(livro);
+
+        if (recomendacoes == null || recomendacoes.isEmpty()){
+            System.out.println("\n====================================================");
+            System.out.println("Eita, esse livro não possui nenhuma outra recomendação! ");
+            System.out.println("========================================================\n");
+            return;
+        }
+        System.out.println("Você também pode gostar de: \n");
+
+        for (Livro l:recomendacoes){
+            System.out.println("-------------------------------");
+            System.out.println(l);
+        }
+        System.out.println("-------------------------------\n");
+
+
+
+    }
+
+    // método de buscar livro no grafo
+    public Livro buscarLivroPorTituloNoGrafo (String tituloDigitado) {
+
+        for(Livro l : grafo.keySet()){
+            if (l.getTitulo().trim().equalsIgnoreCase(tituloDigitado.trim())) { // se o titulo digitado for igual ao titulo do livro
+                return l; // livro encontrado
+            }
+        }
+        return null; //livro não encontrado
+    }
+
+
 
 
 
