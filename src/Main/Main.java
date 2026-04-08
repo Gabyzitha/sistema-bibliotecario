@@ -176,7 +176,9 @@ public class Main {
 
         // OPÇÃO DE SAIR
       } else if (opcao == 'g') {
-        System.out.println("sair");
+        System.out.println("==============================================================\n");
+        System.out.println("        OBRIGADA POR VISITAR NOSSO ACERVO, VOLTE SEMPRE!\n");
+        System.out.println("===============================================================\n");
       }  else {
         System.out.println("\n================================================================");
         System.out.println("      ⚠ Opção inválida. Por favor, escolha 'a', 'b' ou 'c'.");

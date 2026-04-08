@@ -40,8 +40,11 @@ public class Biblioteca {
         System.out.println("\n★★★★★ [LISTAR LIVROS] ★★★★★\n");
 
         for (Livro l : lista) {
+            System.out.println("-------------------------------");
             System.out.println(l);
         }
+        System.out.println("-------------------------------\n");
+
     }
 
     // metodo para buscar o livro por titulo na lista
