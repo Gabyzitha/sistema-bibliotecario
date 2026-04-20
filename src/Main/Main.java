@@ -1,6 +1,7 @@
 package Main;// ONDE O MENU VAI SER CONTROLADO
 
 import Controller.Biblioteca;
+import Model.ArvoreBinaria;
 import Model.Livro;
 
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Main {
 
 
-  public static void Menu (Biblioteca biblioteca){
+  public static void Menu (Biblioteca biblioteca, ArvoreBinaria arvore){
 
     Scanner sc = new Scanner(System.in); // cria o scanner
 
@@ -26,7 +27,8 @@ public class Main {
       System.out.println("d-> Chamar o próximo da fila");
       System.out.println("e-> Histórico de navegação");
       System.out.println("f-> Recomendação de livros");
-      System.out.println("g-> Sair \n");
+      System.out.println("g-> Lista de livros em ordem (árvore binária)");
+      System.out.println("h-> Sair \n");
 
       System.out.print("Escolha a opção que deseja: ");
 
@@ -74,7 +76,6 @@ public class Main {
             System.out.println("      ⚠ Opção inválida. Por favor, digite 's' ou 'n' !");
             System.out.println("=================================================================\n");
           }
-
         }
 
         Livro novoLivro = new Livro(titulo, autor, ano, disponivel);
@@ -170,12 +171,29 @@ public class Main {
           System.out.println("========================\n");
 
           biblioteca.recomendar(livro);
+        }
 
+
+      }  else if (opcao == 'g') {
+        System.out.println("\n★★★★★ [LIVROS EM ORDEM] ★★★★★\n");
+        arvore.listarEmOrdem();
+
+        System.out.print("Deseja vizualizar a estrutura da árvore binária(s/n)? ");
+        String simOuNao = sc.nextLine();
+        if (simOuNao.equals("s")) {
+          System.out.println("\n★★★★★ [ESTRUTURA ARVORE BINÁRIA] ★★★★★\n");
+          arvore.mostrarArvore();
+          System.out.println("\n-------------------------------\n");
 
         }
 
-        // OPÇÃO DE SAIR
-      } else if (opcao == 'g') {
+
+
+
+
+      }
+      // OPÇÃO DE SAIR
+      else if (opcao == 'h') {
         System.out.println("==============================================================\n");
         System.out.println("        OBRIGADA POR VISITAR NOSSO ACERVO, VOLTE SEMPRE!\n");
         System.out.println("===============================================================\n");
@@ -185,7 +203,7 @@ public class Main {
         System.out.println("=================================================================\n");
       }
 
-    } while(opcao != 'g');
+    } while(opcao != 'h');
 
     sc.close();
 
@@ -198,8 +216,9 @@ public class Main {
     System.out.println("=================================================\n");
 
     Biblioteca biblioteca = new Biblioteca(); //cria a biblioteca
+    ArvoreBinaria arvore = new ArvoreBinaria(); // cria a árvore binária
 
-    // criando livros (nós)
+    // criando livros(nós)
     Livro l1 = new Livro ("O amor não é obvio", "Elayne Baeta", 2019, false);
     Livro l2 = new Livro("Delilah Green não está nem ai", "Ashley Herring", 2022, true);
     Livro l3 = new Livro("Os sete maridos de Evelyn Hugo", "Taylor Jenkins", 2019, true);
@@ -245,8 +264,21 @@ public class Main {
     biblioteca.adicionarConexao(l10, l2);
     biblioteca.adicionarConexao(l10, l6);
 
+    // add na árvore
 
-    Menu(biblioteca); // chama o menu
+    arvore.adicionarLivroNaArvore(l1);
+    arvore.adicionarLivroNaArvore(l2);
+    arvore.adicionarLivroNaArvore(l3);
+    arvore.adicionarLivroNaArvore(l4);
+    arvore.adicionarLivroNaArvore(l5);
+    arvore.adicionarLivroNaArvore(l6);
+    arvore.adicionarLivroNaArvore(l7);
+    arvore.adicionarLivroNaArvore(l8);
+    arvore.adicionarLivroNaArvore(l9);
+    arvore.adicionarLivroNaArvore(l10);
+
+
+    Menu(biblioteca, arvore); // chama o menu
 
 
 
