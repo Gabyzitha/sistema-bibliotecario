@@ -3,10 +3,13 @@ package Main;// ONDE O MENU VAI SER CONTROLADO
 import Controller.Biblioteca;
 import Model.ArvoreBinaria;
 import Model.Livro;
+import Util.GeradorDeNomesDeLivros;
+import Sort.BubbleSort;
+import Sort.MergeSort;
+
 
 import java.util.LinkedList;
 import java.util.Scanner;
-
 
 public class Main {
 
@@ -21,14 +24,15 @@ public class Main {
     do {
 
       // OPCÇÕES MENU
-      System.out.println("a-> Adicionar livro ");
+      System.out.println("\na-> Adicionar livro ");
       System.out.println("b-> Listar livros ");
       System.out.println("c-> Verificar a disponibilidade de livro");
       System.out.println("d-> Chamar o próximo da fila");
       System.out.println("e-> Histórico de navegação");
       System.out.println("f-> Recomendação de livros");
       System.out.println("g-> Lista de livros em ordem (árvore binária)");
-      System.out.println("h-> Sair \n");
+      System.out.println("h-> Gerador de Nomes de Livros");
+      System.out.println("i-> Sair \n");
 
       System.out.print("Escolha a opção que deseja: ");
 
@@ -187,13 +191,39 @@ public class Main {
 
         }
 
+      } else if(opcao == 'h') {
+
+        System.out.println("\n★★★★★ [GERANDO NOMES DE LIVROS] ★★★★★\n");
+
+        String[] livros = GeradorDeNomesDeLivros.gerarNomes(10000);
+
+        System.out.println("\n----- (BUBBLE SORT) -----\n");
+
+        BubbleSort.comparacoes = 0;
+
+
+        String[] ordenadoBubble = BubbleSort.ordenar(livros);
+
+
+        System.out.println("===== RESULTADO BUBBLE SORT =====\n");
+        System.out.println("Comparações: " + BubbleSort.comparacoes);
+
+        System.out.println("\n----- (MERGE SORT) -----");
+
+        MergeSort.comparacoes = 0;
+
+        String[] ordenadoMerge = MergeSort.ordenar(livros);
+
+        System.out.println("\n===== RESULTADO MERGE SORT =====\n");
+        System.out.println("Comparações: " + MergeSort.comparacoes);
+
 
 
 
 
       }
       // OPÇÃO DE SAIR
-      else if (opcao == 'h') {
+      else if (opcao == 'i') {
         System.out.println("==============================================================\n");
         System.out.println("        OBRIGADA POR VISITAR NOSSO ACERVO, VOLTE SEMPRE!\n");
         System.out.println("===============================================================\n");
@@ -203,7 +233,7 @@ public class Main {
         System.out.println("=================================================================\n");
       }
 
-    } while(opcao != 'h');
+    } while(opcao != 'i');
 
     sc.close();
 
