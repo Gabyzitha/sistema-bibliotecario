@@ -33,6 +33,7 @@ public class Main {
       System.out.println("g-> Lista de livros em ordem (árvore binária)");
       System.out.println("h-> Gerador de Nomes de Livros");
       System.out.println("i-> Buscar livro na árvore (DFS e BFS)");
+      System.out.println("j-> Recomendação por distãncia (Dijkstra)");
       System.out.println("k-> Sair \n");
 
       System.out.print("Escolha a opção que deseja: ");
@@ -230,6 +231,34 @@ public class Main {
 
         arvore.buscarDFS(tituloDigitado);
         arvore.buscarBFS(tituloDigitado);
+
+      }
+
+      else if (opcao == 'j'){
+
+        System.out.println("\n★★★★★ [RECOMENDAÇÃO POR DISTÂNCIA] ★★★★★\n");
+
+        System.out.println("--- OBS: as recomendações são baseadas em um catálogo interno ---\n");
+
+        System.out.print("Digite o título do livro: ");
+        String tituloDigitado = sc.nextLine().trim();
+
+        Livro livro = biblioteca.buscarLivroPorTituloNoGrafo(tituloDigitado);
+
+        if (livro == null) {
+
+          System.out.println("\nLIVRO NÃO ENCONTRADO :( \n");
+
+        } else {
+
+          System.out.println("\nLIVRO ENCONTRADO:\n");
+          System.out.println(livro);
+
+          biblioteca.adicionarAoHistorico(livro);
+
+          biblioteca.recomendarPorDistancia(livro);
+        }
+
 
       }
       // OPÇÃO DE SAIR
