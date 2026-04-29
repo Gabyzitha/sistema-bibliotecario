@@ -71,5 +71,80 @@ public class ArvoreBinaria {
 
     }
 
+    //método DFS
+    public boolean buscarDFS(String titulo) {
+        System.out.println(("\n===== DFS =====\n"));
+        return  buscarDFSRecursivo(raiz, titulo);
+    }
+
+    private boolean buscarDFSRecursivo(Node nodeAtual, String titulo){
+
+        if (nodeAtual == null) return false;
+
+        //mostra o caminho
+        System.out.println("Visitando: " + nodeAtual.livro.getTitulo());
+
+        // verifica se encontrou
+        if(nodeAtual.livro.getTitulo().equalsIgnoreCase(titulo)) {
+            System.out.println("Encontrado!!!\n");
+
+            return true;
+        }
+
+        //procura na esquerda
+        if(buscarDFSRecursivo(nodeAtual.esquerda, titulo)){
+            return true;
+        }
+
+        // na direita
+
+        return  buscarDFSRecursivo(nodeAtual.direita, titulo);
+    }
+
+    // método BFS
+
+    public boolean buscarBFS(String titulo) {
+
+        System.out.println(("\n===== BFS =====\n"));
+
+        if (raiz == null) return false;
+
+        java.util.Queue<Node> fila = new java.util.LinkedList<>();
+        fila.add(raiz);
+
+        while (!fila.isEmpty()) {
+
+
+            Node atual = fila.poll();
+
+            // mostra o caminho
+            System.out.println("Visitando: " + atual.livro.getTitulo());
+
+            // Verificar se encontrou
+
+            if(atual.livro.getTitulo().equalsIgnoreCase(titulo)){
+                System.out.println("Encontrado!!!\n");
+                return true;
+
+            }
+
+            //add os filhos na fila
+            if (atual.esquerda != null) {
+                fila.add(atual.esquerda);
+            }
+
+            if(atual.direita != null) {
+                fila.add(atual.direita);
+            }
+        }
+
+        System.out.println(("Livro não encontrado\n"));
+        return false;
+
+
+
+
+    }
+
 
 }

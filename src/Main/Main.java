@@ -32,7 +32,8 @@ public class Main {
       System.out.println("f-> Recomendação de livros");
       System.out.println("g-> Lista de livros em ordem (árvore binária)");
       System.out.println("h-> Gerador de Nomes de Livros");
-      System.out.println("i-> Sair \n");
+      System.out.println("i-> Buscar livro na árvore (DFS e BFS)");
+      System.out.println("k-> Sair \n");
 
       System.out.print("Escolha a opção que deseja: ");
 
@@ -217,13 +218,22 @@ public class Main {
         System.out.println("\n===== RESULTADO MERGE SORT =====\n");
         System.out.println("Comparações: " + MergeSort.comparacoes);
 
+      }
 
+      else if (opcao == 'i') {
+        System.out.println("\n★★★★★ [BUSCAR NA ÁRVORE - DFS E BFS] ★★★★★\n");
 
+        System.out.println("--- OBS: as buscas são baseadas em um catálogo interno ---\n");
 
+        System.out.println("Digite o título do livro: ");
+        String tituloDigitado = sc.nextLine();
+
+        arvore.buscarDFS(tituloDigitado);
+        arvore.buscarBFS(tituloDigitado);
 
       }
       // OPÇÃO DE SAIR
-      else if (opcao == 'i') {
+      else if (opcao == 'k') {
         System.out.println("==============================================================\n");
         System.out.println("        OBRIGADA POR VISITAR NOSSO ACERVO, VOLTE SEMPRE!\n");
         System.out.println("===============================================================\n");
@@ -233,7 +243,7 @@ public class Main {
         System.out.println("=================================================================\n");
       }
 
-    } while(opcao != 'i');
+    } while(opcao != 'k');
 
     sc.close();
 
